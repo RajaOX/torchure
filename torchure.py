@@ -17,7 +17,7 @@ def get_device():
         return 'cuda'
     elif torch.backends.mps.is_available():
         return 'mps'
-    elif hasattr(torch.backends, 'xpu') and torch.backends.xpu.is_available():
+    elif torch.xpu.is_available():
         return 'xpu'
     else:
         return 'cpu'
