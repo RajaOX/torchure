@@ -50,8 +50,8 @@ def synchronize_devices(devices):
         # For CPU, no need to synchronize
 
 def run_benchmark(devices, dtype, warmup, output_file):
-    # Define N_list from 8 to 65536 (2^3 to 2^16)
-    N_list = [2**i for i in range(3, 16)]  # 8, 16, ..., 65536
+    # Define N_list from 8 to 65536 (2^8 to 2^16)
+    N_list = [2**i for i in range(8, 16)]  # 8, 16, ..., 65536
 
     # Create output CSV file
     fieldnames = ['N', 'M', 'TFlops', 'Time_s', 'Bandwidth_GBps']
@@ -61,7 +61,7 @@ def run_benchmark(devices, dtype, warmup, output_file):
 
         for N in N_list:
             # M varies from 1 to N in powers of 2
-            M_list = [2**j for j in range(0, int(math.log2(N)) + 1)]  # 1, 2, ..., N
+            M_list = [2**j for j in range(2, int(math.log2(N)) + 1)]  # 1, 2, ..., N
             for M in M_list:
                 print(f"Running benchmark for N={N}, M={M}")
                 try:
